@@ -1,4 +1,4 @@
-package io.github.cafeteriaguild.lin.parser
+package io.github.cafeteriaguild.lin.parser.utils
 
 import com.github.adriantodt.tartar.api.parser.ParserContext
 
