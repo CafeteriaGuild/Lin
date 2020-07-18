@@ -6,13 +6,16 @@ import com.github.adriantodt.tartar.api.parser.SyntaxException
 import com.github.adriantodt.tartar.api.parser.Token
 import io.github.cafeteriaguild.lin.ast.expr.Expr
 import io.github.cafeteriaguild.lin.ast.expr.Node
+import io.github.cafeteriaguild.lin.ast.expr.misc.DoWhileExpr
 import io.github.cafeteriaguild.lin.ast.expr.misc.InvalidExpr
-import io.github.cafeteriaguild.lin.ast.expr.misc.WhileExpr
 import io.github.cafeteriaguild.lin.lexer.TokenType
 import io.github.cafeteriaguild.lin.parser.utils.parseBlock
 
-object WhileParser : PrefixParser<TokenType, Expr> {
+object DoWhileParser : PrefixParser<TokenType, Expr> {
     override fun parse(ctx: ParserContext<TokenType, Expr>, token: Token<TokenType>): Expr {
+        val expr = ctx.parseBlock()
+        ctx.skipUntil(TokenType.WHILE)
+        ctx.eat(TokenType.WHILE)
         ctx.eat(TokenType.L_PAREN)
         val condition = ctx.parseExpression().let {
             it as? Node ?: return InvalidExpr {
@@ -22,7 +25,6 @@ object WhileParser : PrefixParser<TokenType, Expr> {
             }
         }
         ctx.eat(TokenType.R_PAREN)
-        val expr = ctx.parseBlock()
-        return WhileExpr(condition, expr, token.section)
+        return DoWhileExpr(expr, condition, token.section)
     }
 }
