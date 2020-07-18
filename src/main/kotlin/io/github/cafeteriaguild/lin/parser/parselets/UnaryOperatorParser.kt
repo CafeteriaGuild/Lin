@@ -1,4 +1,4 @@
-package io.github.cafeteriaguild.lin.parser.grammar
+package io.github.cafeteriaguild.lin.parser.parselets
 
 import com.github.adriantodt.tartar.api.parser.ParserContext
 import com.github.adriantodt.tartar.api.parser.PrefixParser
