@@ -7,24 +7,19 @@ import com.github.adriantodt.tartar.api.parser.Token
 import io.github.cafeteriaguild.lin.ast.expr.Expr
 import io.github.cafeteriaguild.lin.ast.expr.Node
 import io.github.cafeteriaguild.lin.ast.expr.misc.InvalidExpr
-import io.github.cafeteriaguild.lin.ast.expr.misc.UnitNode
-import io.github.cafeteriaguild.lin.ast.expr.nodes.ReturnNode
+import io.github.cafeteriaguild.lin.ast.expr.nodes.ThrowNode
 import io.github.cafeteriaguild.lin.lexer.TokenType
 
-object ReturnParser : PrefixParser<TokenType, Expr> {
+object ThrowParser : PrefixParser<TokenType, Expr> {
     override fun parse(ctx: ParserContext<TokenType, Expr>, token: Token<TokenType>): Expr {
-        val node = if (ctx.matchAny(TokenType.NL, TokenType.SEMICOLON)) {
-            UnitNode(token.section)
-        } else {
-            ctx.parseExpression().let {
-                it as? Node ?: return InvalidExpr {
-                    section(token.section)
-                    child(it)
-                    error(SyntaxException("Expected a node but got a statement instead.", it.section))
-                }
+        val node = ctx.parseExpression().let {
+            it as? Node ?: return InvalidExpr {
+                section(token.section)
+                child(it)
+                error(SyntaxException("Expected a node but got a statement instead.", it.section))
             }
         }
 
-        return ReturnNode(node, token.section)
+        return ThrowNode(node, token.section)
     }
 }
