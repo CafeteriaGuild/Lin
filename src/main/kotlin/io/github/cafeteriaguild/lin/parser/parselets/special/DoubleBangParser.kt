@@ -4,10 +4,10 @@ import com.github.adriantodt.tartar.api.parser.InfixParser
 import com.github.adriantodt.tartar.api.parser.ParserContext
 import com.github.adriantodt.tartar.api.parser.SyntaxException
 import com.github.adriantodt.tartar.api.parser.Token
-import io.github.cafeteriaguild.lin.ast.expr.Expr
-import io.github.cafeteriaguild.lin.ast.expr.Node
-import io.github.cafeteriaguild.lin.ast.expr.misc.InvalidNode
-import io.github.cafeteriaguild.lin.ast.expr.nodes.NotNullExpr
+import io.github.cafeteriaguild.lin.ast.node.Expr
+import io.github.cafeteriaguild.lin.ast.node.Node
+import io.github.cafeteriaguild.lin.ast.node.misc.InvalidNode
+import io.github.cafeteriaguild.lin.ast.node.nodes.NotNullExpr
 import io.github.cafeteriaguild.lin.lexer.TokenType
 import io.github.cafeteriaguild.lin.parser.Precedence
 import io.github.cafeteriaguild.lin.parser.utils.maybeIgnoreNL
