@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("com.github.adriantodt:tartar:1.5.3")
+    implementation("com.github.adriantodt:tartar:1.6")
     //implementation("it.unimi.dsi:fastutil:8.3.1")
 }
 
